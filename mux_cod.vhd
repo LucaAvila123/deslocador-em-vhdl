@@ -35,7 +35,7 @@ entity mux_cod is
 --  Port ( );
     port(
         shift :      in  std_logic_vector(3 downto 0); -- entrada do codificador de prioridade
-        c1c0  :      inout std_logic_vector(1 downto 0); -- saida do codificador de prioridade (vendo se dá pra usar entrada e saída ao mesmo tempo)
+        -- c1c0  :      inout std_logic_vector(1 downto 0); -- saida do codificador de prioridade (vendo se dá pra usar entrada e saída ao mesmo tempo)
         
         x2, x1, x0 : in std_logic_vector(0 downto 0); --entradas originais
         x3, xm1 :    in std_logic_vector(0 downto 0); -- entradas extra
@@ -48,13 +48,13 @@ end mux_cod;
 architecture arch of mux_cod is
       
 begin
-      c1c0 <= "11" when (shift(3) = '1') else
-              "10" when (shift(2) = '1') else
-              "01" when (shift(1) = '1') else
-              "00";
+      -- c1c0 <= "11" when (shift(3) = '1') else
+              -- "10" when (shift(2) = '1') else
+              -- "01" when (shift(1) = '1') else
+              -- "00";
        
-       saida <= x2 & x1 & x0 when c1c0 = "00" else -- deixando estar como era
-                x3 & x2 & x1 when c1c0 = "01" else -- deslocando para a esquerda
-                x1 & x0 &xm1 when c1c0 = "10" else -- deslocando para a direita
-                x1 & x0 & x2;                      -- deslocando para a direita circularmente
+       saida <= x1 & x0 & x2 when (shift(3) = '1') else -- deslocamento circular para a direita
+                x1 & x0 &xm1 when (shift(2) = '1') else -- deslocamento para a direita
+                x3 & x2 & x1 when (shift(1) = '1') else -- deslocamento para a esquerda
+                x2 & x1 & x0;                           -- sem deslocamento
 end arch;
