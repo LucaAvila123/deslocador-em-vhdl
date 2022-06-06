@@ -41,7 +41,7 @@ entity eqtop is
           swx3   : in  std_logic_vector(4 downto 4);   -- entrada correspondente a x3
           swxm1  : in  std_logic_vector(0 downto 0);   -- entrada correspondente a xm1
           
-          leds   : out std_logic_vector(5 downto 0)
+          leds   : out std_logic_vector(8 downto 0)
           );
 end eqtop;
 
@@ -57,7 +57,7 @@ begin
             x3    => swx3(4 downto 4),
             xm1   => swxm1(0 downto 0),
             
-            saida => leds(5 downto 0)
+            saida => leds(8 downto 0)
             
             
         );

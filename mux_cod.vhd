@@ -40,7 +40,7 @@ entity mux_cod is
         x2, x1, x0 : in std_logic_vector(0 downto 0); --entradas originais
         x3, xm1 :    in std_logic_vector(0 downto 0); -- entradas extra
         
-        saida      : out std_logic_vector(5 downto 0)
+        saida      : out std_logic_vector(8 downto 0)
         
     );
 end mux_cod;
@@ -53,8 +53,9 @@ begin
               -- "01" when (shift(1) = '1') else
               -- "00";
        
-       saida <= '0' & x1 & x0 & x2 & '0' when (shift(3) = '1') else -- deslocamento circular para a direita
-                '0' & '0' & x1 & x0 &xm1 when (shift(2) = '1') else -- deslocamento para a direita
-                x3 & x2 & x1 & '0' & '0' when (shift(1) = '1') else -- deslocamento para a esquerda
-                '0' & x2 & x1 & x0 & '0';                           -- sem deslocamento
+       -- os primeios numeros impressos são desnecessarios funcionalmente, mas eles orientam qual operacao eh realizada
+       saida <= "100" & '0' & x1 & x0 & x2 & '0' when (shift(3) = '1') else -- deslocamento circular para a direita
+                "010" & '0' & '0' & x1 & x0 &xm1 when (shift(2) = '1') else -- deslocamento para a direita
+                "001" & x3 & x2 & x1 & '0' & '0' when (shift(1) = '1') else -- deslocamento para a esquerda
+                "000" & '0' & x2 & x1 & x0 & '0';                           -- sem deslocamento
 end arch;
