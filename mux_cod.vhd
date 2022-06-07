@@ -37,8 +37,8 @@ entity mux_cod is
         shift :      in  std_logic_vector(2 downto 0); -- entrada do codificador de prioridade
         -- c1c0  :      inout std_logic_vector(1 downto 0); -- saida do codificador de prioridade (vendo se dá pra usar entrada e saída ao mesmo tempo)
         
-        x2, x1, x0 : in std_logic; --entradas originais
-        x3, xm1 :    in std_logic; -- entradas extra
+        x : in std_logic (4 downto 0); --entradas usando um vetor
+        
         
         saida      : out std_logic_vector(7 downto 0)
         
@@ -54,8 +54,8 @@ begin
               -- "00";
        
        -- os primeios numeros impressos são desnecessarios funcionalmente, mas eles orientam qual operacao eh realizada
-       saida <= "100" & '0' & x1 & x0 & x2 & '0' when (shift(2) = '1') else -- deslocamento circular para a direita
-                "010" & '0' & '0' & x1 & x0 &xm1 when (shift(1) = '1') else -- deslocamento para a direita
-                "001" & x3 & x2 & x1 & '0' & '0' when (shift(0) = '1') else -- deslocamento para a esquerda
-                "000" & '0' & x2 & x1 & x0 & '0';                           -- sem deslocamento
+       saida <= "100" & '0' & x(1) & x(3) & x(2) & '0' when (shift(2) = '1') else -- deslocamento circular para a direita
+                "010" & '0' & '0' & x(2) & x(1) &x(0) when (shift(1) = '1') else -- deslocamento para a direita
+                "001" & x(4) & x(3) & x(2) & '0' & '0' when (shift(0) = '1') else -- deslocamento para a esquerda
+                "000" & '0' & x(3) & x(2) & x(1) & '0';                           -- sem deslocamento
 end arch;
