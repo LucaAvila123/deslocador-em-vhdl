@@ -37,7 +37,7 @@ entity mux_cod is
         shift :      in  std_logic_vector(2 downto 0); -- entrada do codificador de prioridade
         -- c1c0  :      inout std_logic_vector(1 downto 0); -- saida do codificador de prioridade (vendo se dá pra usar entrada e saída ao mesmo tempo)
         
-        x : in std_logic_vector (4 downto 0); --entradas usando um vetor
+        x :          in std_logic_vector(4 downto 0); --entradas usando um vetor
         
         
         saida      : out std_logic_vector(7 downto 0)
