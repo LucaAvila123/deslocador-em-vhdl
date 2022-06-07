@@ -34,10 +34,9 @@ use IEEE.NUMERIC_STD.ALL;
 entity eqtop is
 --  Port ( );
     port(
-          swcod  : in  std_logic_vector(15 downto 13); -- 3 switches para o codificador
-          swx    : in  std_logic_vector(4 downto 0);
+          sw     : in  std_logic_vector(7 downto 0);
           
-          leds   : out std_logic_vector(7 downto 0)
+          led   : out std_logic_vector(7 downto 0)
           );
 end eqtop;
 
@@ -46,10 +45,10 @@ architecture arch of eqtop is
 begin
     deslocador : entity work.mux_cod(arch)
         port map(
-            shift => swcod(15 downto 13),
-            x     => swx(4 downto 0),
+            shift => sw(7 downto 5),
+            x     => sw(4 downto 0),
             
-            saida => leds(7 downto 0)
+            saida => led(7 downto 0)
             
             
         );
