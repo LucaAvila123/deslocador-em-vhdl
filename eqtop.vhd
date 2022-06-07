@@ -35,11 +35,11 @@ entity eqtop is
 --  Port ( );
     port(
           swcod  : in  std_logic_vector(15 downto 13); -- 3 switches para o codificador
-          swx2   : in  std_logic_vector(3 downto 3);   -- entrada correspondente a x2
-          swx1   : in  std_logic_vector(2 downto 2);   -- entrada correspondente a x1
-          swx0   : in  std_logic_vector(1 downto 1);   -- entrada correspondente a x0
-          swx3   : in  std_logic_vector(4 downto 4);   -- entrada correspondente a x3
-          swxm1  : in  std_logic_vector(0 downto 0);   -- entrada correspondente a xm1
+          swx2   : in  std_logic(3);   -- entrada correspondente a x2
+          swx1   : in  std_logic(2);   -- entrada correspondente a x1
+          swx0   : in  std_logic(1);   -- entrada correspondente a x0
+          swx3   : in  std_logic(4);   -- entrada correspondente a x3
+          swxm1  : in  std_logic(0);   -- entrada correspondente a xm1
           
           leds   : out std_logic_vector(7 downto 0)
           );
@@ -51,11 +51,11 @@ begin
     deslocador : entity work.mux_cod(arch)
         port map(
             shift => swcod(15 downto 13),
-            x2    => swx2(3 downto 3),
-            x1    => swx1(2 downto 2),
-            x0    => swx0(1 downto 1),
-            x3    => swx3(4 downto 4),
-            xm1   => swxm1(0 downto 0),
+            x2    => swx2(3),
+            x1    => swx1(2),
+            x0    => swx0(1),
+            x3    => swx3(4),
+            xm1   => swxm1(0),
             
             saida => leds(7 downto 0)
             
