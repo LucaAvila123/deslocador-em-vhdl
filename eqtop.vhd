@@ -34,7 +34,8 @@ use IEEE.NUMERIC_STD.ALL;
 entity eqtop is
 --  Port ( );
     port(
-          sw     : in  std_logic_vector(7 downto 0);
+        
+          sw    : in  std_logic_vector(7 downto 0);
           
           led   : out std_logic_vector(7 downto 0)
           );
