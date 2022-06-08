@@ -54,8 +54,8 @@ begin
               -- "00";
        
        -- os primeios numeros impressos são desnecessarios funcionalmente, mas eles orientam qual operacao eh realizada
-       saida <= "100" & '0' & x(1) & x(3) & x(2) & '0' when (shift(2) = '1') else -- deslocamento circular para a direita
-                "010" & '0' & '0' & x(2) & x(1) &x(0) when (shift(1) = '1') else -- deslocamento para a direita
+       saida <= "100" & '0' & '0' & x(2) & x(1) &x(0)  when (shift(2) = '1') else -- deslocamento para a direita
+                "010" & '0' & x(1) & x(3) & x(2) & '0' when (shift(1) = '1') else -- deslocamento circular para a direita
                 "001" & x(4) & x(3) & x(2) & '0' & '0' when (shift(0) = '1') else -- deslocamento para a esquerda
                 "000" & '0' & x(3) & x(2) & x(1) & '0';                           -- sem deslocamento
 end arch;
